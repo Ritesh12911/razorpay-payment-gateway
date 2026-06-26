@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Failed | PaySecure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .result-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-xl);
+      position: relative;
+      z-index: 1;
+    }
+
+    .result-card {
+      max-width: 480px;
+      width: 100%;
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-3xl) var(--space-2xl);
+      text-align: center;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .result-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-xl);
+      position: relative;
+    }
+
+    .result-icon--failure {
+      background: rgba(248, 113, 113, 0.1);
+      border: 2px solid rgba(248, 113, 113, 0.3);
+      color: #f87171;
+      animation: failShake 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+    }
+
+    .result-icon--failure::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(248, 113, 113, 0.15);
+      animation: ringPulseRed 2s ease-out infinite;
+    }
+
+    @keyframes failShake {
+      0% { transform: scale(0) rotate(0deg); opacity: 0; }
+      50% { transform: scale(1.15) rotate(-5deg); opacity: 1; }
+      70% { transform: scale(0.95) rotate(3deg); }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    @keyframes ringPulseRed {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(1.3); opacity: 0; }
+    }
+
+    .result-title {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: var(--space-sm);
+      color: #f87171;
+      animation: fadeInUp 0.5s ease-out 0.3s both;
+    }
+
+    .result-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: var(--space-lg);
+      animation: fadeInUp 0.5s ease-out 0.4s both;
+    }
+
+    .result-reason {
+      background: rgba(248, 113, 113, 0.06);
+      border: 1px solid rgba(248, 113, 113, 0.15);
+      border-radius: var(--radius-md);
+      padding: var(--space-md) var(--space-lg);
+      margin-bottom: var(--space-2xl);
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      animation: fadeInUp 0.5s ease-out 0.5s both;
+    }
+
+    .result-reason strong {
+      color: #f87171;
+      font-weight: 600;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      animation: fadeInUp 0.5s ease-out 0.6s both;
+    }
+
+    .result-btn {
+      padding: 14px 24px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-base);
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .result-btn--primary {
+      background: var(--gradient-btn);
+      border: none;
+      color: white;
+      box-shadow: var(--shadow-btn);
+    }
+
+    .result-btn--primary:hover {
+      box-shadow: var(--shadow-btn-hover);
+      transform: translateY(-2px);
+    }
+
+    .result-btn--secondary {
+      background: rgba(129, 140, 248, 0.06);
+      border: 1px solid var(--border-card);
+      color: var(--text-primary);
+    }
+
+    .result-btn--secondary:hover {
+      background: rgba(129, 140, 248, 0.12);
+      border-color: var(--accent-indigo);
+    }
+
+    .result-tips {
+      margin-top: var(--space-2xl);
+      text-align: left;
+      animation: fadeInUp 0.5s ease-out 0.7s both;
+    }
+
+    .result-tips h3 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+      color: var(--text-primary);
+    }
+
+    .result-tips ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .result-tips li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text-secondary);
+      font-size: 0.83rem;
+      line-height: 1.5;
+    }
+
+    .result-tips li svg {
+      color: var(--accent-violet);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+
+  <div class="result-page">
+    <div class="result-card">
+      <div class="result-icon result-icon--failure" id="failure-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </div>
+
+      <h1 class="result-title">Payment Failed</h1>
+      <p class="result-subtitle">Don't worry — no amount was charged from your account.</p>
+
+      <div class="result-reason" id="failure-reason">
+        <strong>Reason:</strong> <span id="reason-text">The payment could not be processed.</span>
+      </div>
+
+      <div class="result-actions">
+        <a href="/" class="result-btn result-btn--primary" id="btn-retry">Try Again</a>
+        <a href="mailto:support@example.com" class="result-btn result-btn--secondary" id="btn-contact">Contact Support</a>
+      </div>
+
+      <div class="result-tips">
+        <h3>Quick troubleshooting:</h3>
+        <ul>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Check if your card has sufficient balance
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Ensure online transactions are enabled on your card
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Try a different payment method (UPI, net banking, or another card)
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Clear browser cache and try again
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Parse URL params for failure reason
+    const params = new URLSearchParams(window.location.search);
+    const reason = params.get('reason');
+
+    if (reason) {
+      document.getElementById('reason-text').textContent = reason;
+    }
+  </script>
+</body>
+</html>

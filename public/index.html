@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Payment Gateway | Powered by Razorpay</title>
+  <meta name="description" content="Fast, secure payment processing powered by Razorpay. Pay with cards, UPI, wallets, and net banking." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Razorpay Checkout -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--3" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header__container">
+      <a href="/" class="header__logo" id="logo">
+        <div class="header__logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="8" fill="url(#logo-grad)" />
+            <path d="M8 14L12 18L20 10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="0" y1="0" x2="28" y2="28">
+                <stop stop-color="#818CF8"/>
+                <stop offset="1" stop-color="#C084FC"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="header__logo-text">PaySecure</span>
+      </a>
+      <nav class="header__nav">
+        <div class="header__badge" id="secure-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>256-bit SSL Encrypted</span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main" id="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero-section">
+      <div class="hero__content">
+        <div class="hero__tag">
+          <span class="hero__tag-dot"></span>
+          Secure Payments
+        </div>
+        <h1 class="hero__title">
+          Choose Your<br />
+          <span class="hero__title-gradient">Perfect Plan</span>
+        </h1>
+        <p class="hero__subtitle">
+          Fast, secure checkout powered by Razorpay. Pay with cards, UPI, wallets, or net banking.
+        </p>
+      </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="pricing" id="pricing-section">
+      <div class="pricing__grid">
+
+        <!-- Starter Plan -->
+        <div class="pricing__card" id="plan-starter" data-amount="499" data-plan="Starter">
+          <div class="pricing__card-header">
+            <div class="pricing__icon pricing__icon--starter">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <h3 class="pricing__plan-name">Starter</h3>
+            <p class="pricing__plan-desc">Perfect for individuals</p>
+          </div>
+          <div class="pricing__price">
+            <span class="pricing__currency">₹</span>
+            <span class="pricing__amount">499</span>
+            <span class="pricing__period">/month</span>
+          </div>
+          <ul class="pricing__features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              5 Projects
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              10 GB Storage
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Email Support
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Basic Analytics
+            </li>
+          </ul>
+          <button class="pricing__btn" id="btn-starter" onclick="initiatePayment(499, 'Starter Plan')">
+            <span>Get Started</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+        <!-- Pro Plan (Featured) -->
+        <div class="pricing__card pricing__card--featured" id="plan-pro" data-amount="999" data-plan="Pro">
+          <div class="pricing__card-badge">Most Popular</div>
+          <div class="pricing__card-header">
+            <div class="pricing__icon pricing__icon--pro">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <h3 class="pricing__plan-name">Pro</h3>
+            <p class="pricing__plan-desc">Best for growing teams</p>
+          </div>
+          <div class="pricing__price">
+            <span class="pricing__currency">₹</span>
+            <span class="pricing__amount">999</span>
+            <span class="pricing__period">/month</span>
+          </div>
+          <ul class="pricing__features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Unlimited Projects
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              100 GB Storage
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Priority Support
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Advanced Analytics
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Team Collaboration
+            </li>
+          </ul>
+          <button class="pricing__btn pricing__btn--featured" id="btn-pro" onclick="initiatePayment(999, 'Pro Plan')">
+            <span>Get Pro</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="pricing__card" id="plan-enterprise" data-amount="2499" data-plan="Enterprise">
+          <div class="pricing__card-header">
+            <div class="pricing__icon pricing__icon--enterprise">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <h3 class="pricing__plan-name">Enterprise</h3>
+            <p class="pricing__plan-desc">For large organizations</p>
+          </div>
+          <div class="pricing__price">
+            <span class="pricing__currency">₹</span>
+            <span class="pricing__amount">2,499</span>
+            <span class="pricing__period">/month</span>
+          </div>
+          <ul class="pricing__features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Everything in Pro
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Unlimited Storage
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              24/7 Dedicated Support
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Custom Integrations
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              SLA Guarantee
+            </li>
+          </ul>
+          <button class="pricing__btn" id="btn-enterprise" onclick="initiatePayment(2499, 'Enterprise Plan')">
+            <span>Contact Sales</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Custom Amount Section -->
+    <section class="custom-pay" id="custom-pay-section">
+      <div class="custom-pay__card">
+        <div class="custom-pay__header">
+          <h2 class="custom-pay__title">Custom Payment</h2>
+          <p class="custom-pay__desc">Enter any amount to make a one-time payment</p>
+        </div>
+        <div class="custom-pay__form">
+          <div class="custom-pay__input-group" id="custom-amount-group">
+            <span class="custom-pay__input-prefix">₹</span>
+            <input
+              type="number"
+              id="custom-amount"
+              class="custom-pay__input"
+              placeholder="Enter amount"
+              min="1"
+              step="1"
+              aria-label="Payment amount in INR"
+            />
+          </div>
+          <button class="custom-pay__btn" id="btn-custom-pay" onclick="handleCustomPayment()">
+            <span>Pay Now</span>
+            <div class="custom-pay__btn-shine"></div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust" id="trust-section">
+      <div class="trust__grid">
+        <div class="trust__item" id="trust-secure">
+          <div class="trust__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <h4>Secure Payments</h4>
+          <p>PCI DSS Level 1 compliant</p>
+        </div>
+        <div class="trust__item" id="trust-methods">
+          <div class="trust__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+          </div>
+          <h4>Multiple Methods</h4>
+          <p>Cards, UPI, Wallets, NetBanking</p>
+        </div>
+        <div class="trust__item" id="trust-instant">
+          <div class="trust__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <h4>Instant Processing</h4>
+          <p>Payments confirmed in seconds</p>
+        </div>
+        <div class="trust__item" id="trust-support">
+          <div class="trust__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h4>24/7 Support</h4>
+          <p>Help whenever you need it</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="footer__container">
+      <p class="footer__text">Powered by <strong>Razorpay</strong> &middot; Secure Payment Gateway</p>
+      <p class="footer__legal">All transactions are encrypted and secure. By proceeding, you agree to our Terms of Service.</p>
+    </div>
+  </footer>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="loading-overlay__content">
+      <div class="loading-spinner" id="loading-spinner"></div>
+      <p class="loading-overlay__text">Creating your order...</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+</body>
+</html>
