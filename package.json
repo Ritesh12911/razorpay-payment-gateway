@@ -1,5 +1,5 @@
 {
-  "name": "razorpay-gateway",
+  "name": "razorpay-payment-gateway",
   "version": "2.0.0",
   "description": "Production Razorpay Payment Gateway (Vercel Serverless)",
   "private": true,
